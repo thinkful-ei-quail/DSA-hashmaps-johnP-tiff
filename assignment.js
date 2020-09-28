@@ -124,8 +124,10 @@ function chekcPal(str) {
   } else {return newHas.size===Math.ceil(str.length/2)}
 
 }
+// console.log(chekcPal('sting'))
 
 
+<<<<<<< HEAD
 // console.log(chekcPal('sting'))
 
 
@@ -153,3 +155,26 @@ function main() {
 }
 
 main();
+=======
+
+normalize = (char) => {
+  let characters = char.split('')
+  return characters.sort().join('')
+}
+
+anagramGrouping = (strs) => {
+  const hashString = new Map()
+  strs.forEach(str => {
+    let normalWord = normalize(str)
+    if (hashString.has(normalWord)) {
+      let values = hashString.get(normalWord)
+      values.push(str)
+    } else {
+      hashString.set(normalWord, [str]) // set pushes non-matching str into seperate array
+    }
+  })
+  return [...hashString.values()]
+}
+
+console.log(anagramGrouping(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race']))
+>>>>>>> 5d97daad6e66deb7dc709a832847f5ca29176c86
