@@ -72,16 +72,6 @@ the result after deletion is “gole”.
 Test your program with a sentence as well such as
 "google all that you think can think of".
 
-function firstOcc(str, newStr=''){
-
-if(str.length=0){return newStr;}
-newStr +=str[0];
-str=str-str[0];
-firstOcc(str, newStr);
-
-
-
-}
 
 
 
