@@ -1,25 +1,25 @@
 const HashMap=require('./HashMap')
 
-main=() => {
-  const numMap=new HashMap()
-  numMap.set(1, 'one')
-  numMap.set(2, 'two')
-  numMap.set(3, 'three')
-  numMap.set(4, 'four')
-  numMap.set(5, 'five')
-  numMap.set(6, 'six')
-  numMap.set(7, 'seven')
-  numMap.set(8, 'eight') // max cap
-  numMap.set(9, 'nine')
-  numMap.set(10, 'ten')
-  numMap.set(11, 'eleven')
-  numMap.set(12, 'twelve') // last entry
-  numMap.set(1, 'eleven')
-  numMap.set(1, 'seven') // when no collision handling, maps out last read input
-  // console.log(numMap)
-  console.log(numMap._hashTable)
-}
-// main()
+// main=() => {
+//   const numMap=new HashMap()
+//   numMap.set(1, 'one')
+//   numMap.set(2, 'two')
+//   numMap.set(3, 'three')
+//   numMap.set(4, 'four')
+//   numMap.set(5, 'five')
+//   numMap.set(6, 'six')
+//   numMap.set(7, 'seven')
+//   numMap.set(8, 'eight') // max cap
+//   numMap.set(9, 'nine')
+//   numMap.set(10, 'ten')
+//   numMap.set(11, 'eleven')
+//   numMap.set(12, 'twelve') // last entry
+//   numMap.set(1, 'eleven')
+//   numMap.set(1, 'seven') // when no collision handling, maps out last read input
+//   // console.log(numMap)
+//   console.log(numMap._hashTable)
+// }
+// // main()
 
 // What is the capacity of your hash table after you have hashed all the above items? Explain your answer.
 /* Capacity is 24, map class won't resize unless told to do so.
@@ -126,4 +126,30 @@ function chekcPal(str) {
 }
 
 
-console.log(chekcPal('sting'))
+// console.log(chekcPal('sting'))
+
+
+
+function main() {
+  const lotr=new HashMap();
+
+  // lotr.MAX_LOAD_RATIO=.5;
+  // lotr.SIZE_RATIO=3;
+  lotr.set("Hobbit", "Bilbo");
+  lotr.set("Hobbit", "Frodo");
+  lotr.set("Wizard", "Gandalf");
+  lotr.set("Human", "Aragorn");
+  lotr.set("Elf", "Legolas");
+  lotr.set("Maiar", "The Necromancer");
+  lotr.set("Maiar", "Sauron");
+  lotr.set("Ringbearer", "Gollum");
+  lotr.set("LadyOfLight", "Galadriel");
+  lotr.set("HalfElven", "Arwen");
+  lotr.set("Ent", "Treebeard");
+  lotr.get('Hobbit')
+  console.log(JSON.stringify(lotr.get('Hobbit')));
+  console.log(JSON.stringify(lotr))
+  console.log(JSON.stringify(lotr._hashTable))
+}
+
+main();

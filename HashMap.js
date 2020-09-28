@@ -1,4 +1,4 @@
-const LinkedList=require('./linkedLists')
+const LinkedList=require("./linkedLists");
 
 
 
@@ -15,37 +15,32 @@ class HashMap {
         if(this._hashTable[index]===undefined) {
             throw new Error('Key error');
         }
-        return this._hashTable[index].value;
+        return this._hashTable[index];
     }
 
     set(key, value) {
-        const loadRatio=(this.length+1)/this._capacity;
+        const valArr=[];
+
+        const loadRatio=(this.length+this._deleted+1)/this._capacity;
         if(loadRatio>HashMap.MAX_LOAD_RATIO) {
             this._resize(this._capacity*HashMap.SIZE_RATIO);
         }
         //Find the slot where this key should be in
         const index=this._findSlot(key);
-        const newValue={key, value}
+
         if(!this._hashTable[index]) {
             this.length++;
-            //     const list=this._hashTable[index];
-            //     let currNode=list.head;
-            //     while(currNode!==null) {
-            //         if(currNode.value.key===key) {return currNode.value.value=value;}
-            //         currNode=currNode.next;
-            //     }
-            //     list.insertLast(newValue)
-            // } else {
-            //     this.length++;
-            //     const list=new LinkedList();
-            //     list.insertFirst(newValue);
-            //     this._hashTable[index]=list;
         }
+        if(this._hashTable[index]) {
 
 
+            return this._hashTable[index].valArr.push(value);
+            ;
+        }
+        valArr.push(value);
         this._hashTable[index]={
             key,
-            value,
+            valArr,
             DELETED: false
         };
     }
@@ -90,7 +85,6 @@ class HashMap {
     }
 
     static _hashString(string) {
-
         let hash=5381;
         for(let i=0;i<string.length;i++) {
             //Bitwise left shift with 5 0s - this would be similar to
@@ -106,7 +100,5 @@ class HashMap {
     }
 }
 
-HashMap.MAX_LOAD_RATIO=0.5
-HashMap.SIZE_RATIO=3
 
 module.exports=HashMap;
