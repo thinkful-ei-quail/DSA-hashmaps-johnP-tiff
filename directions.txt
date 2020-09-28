@@ -73,14 +73,64 @@ Test your program with a sentence as well such as
 "google all that you think can think of".
 
 
+function firstOcc(str) {
+  let newStr='';
+  let newSet=[...new Set(str)]
+  for(let [key, value] of newSet.entries()) newStr+=value
+  return newStr
+}
+
+
+
+
+console.log(firstOcc("google all that you think can think of"))
 
 
 
 5. Any permutation a palindrome
-Write an algorithm to check whether any anagram of some string is a palindrome. Given some string, "acecarr", the algorithm should return true, because the letters in "acecarr" can be rearranged to the anagram "racecar", which itself is a palindrome. In contrast, given the word "north", the algorithm should return false, because there's no anagram for "north" that would be a palindrome.
+Write an algorithm to check whether any anagram of some string is a palindrome.
+Given some string, "acecarr",
+the algorithm should return true,
+because the letters in "acecarr" can be rearranged to the anagram "racecar",
+which itself is a palindrome.
+In contrast, given the word "north", the algorithm should return false, because there's no anagram for "north" that would be a palindrome.
+
+
+
+function chekcPal(str) {
+  let newHas=new Map();
+
+  for(let i=0;i<str.length;i++) {
+    if(newHas.has(str[i])) {
+      let currval=newHas.get(str[i]);
+      newHas.set(str[i], currval+1)
+    } else {
+      newHas.set(str[i], 1)
+    }
+  }
+  if(str.length%2===0) {
+    return newHas.size===str.length/2
+  } else {return newHas.size===Math.ceil(str.length/2)}
+
+}
+
+
+console.log(chekcPal('sting'))
+
 
 6. Anagram grouping
-Write an algorithm to group a list of words into anagrams. For example, if the input was ['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race'], the output should be: [['east', 'teas', 'eats'], ['cars', 'arcs'], ['acre', 'race']].
+Write an algorithm to group a list of words into anagrams.
+
+For example,
+
+if the input was ['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race'],
+
+the output should be:
+[['east', 'teas', 'eats'], ['cars', 'arcs'], ['acre', 'race']].
+
+
+
+
 
 7. Separate Chaining
 Write another hash map implementation as above, but use separate chaining as the collision resolution mechanism.

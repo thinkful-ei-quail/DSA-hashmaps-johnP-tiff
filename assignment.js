@@ -16,7 +16,8 @@ main=() => {
   numMap.set(12, 'twelve') // last entry
   numMap.set(1, 'eleven')
   numMap.set(1, 'seven') // when no collision handling, maps out last read input
-  console.log(numMap)
+  // console.log(numMap)
+  console.log(numMap._hashTable)
 }
 // main()
 
@@ -50,14 +51,79 @@ const WhatDoesThisDo=function () {
 
 
 
-// function firstOcc(str) {
-//   let newStr='';
-//   let newSet=[...new Set(str)]
-//   for(let [key, value] of newSet.entries()) newStr+=value
-//   return newStr
-// }
+function firstOcc(str) {
+  let newStr='';
+  let newSet=[...new Set(str)]
+  for(let [key, value] of newSet.entries()) newStr+=value
+  return newStr
+}
 
 
 
 
 // console.log(firstOcc("google all that you think can think of"))
+
+
+
+is_palindrome=(strVal) => {
+
+  strVal=strVal.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
+  const revStack=new Stack();
+
+  for(let i=0;i<strVal.length;i++) {
+    revStack.push(strVal[i]);
+  }
+
+  for(let i=0;i<strVal.length;i++) {
+    const currStrChar=strVal[i];
+    const currStackChar=revStack.pop();
+    if(currStrChar!==currStackChar) {
+      return false;
+    }
+  }
+  return true;
+};
+
+
+// console.log(is_palindrome('racecar'))
+
+
+function isScrambledPalindrome(input) {
+  let chars={};
+  input.split("").forEach(
+    function (char) {
+      if(chars[char]) {
+        delete chars[char]
+      } else {
+        chars[char]="odd"
+      }
+    });
+  return (Object.keys(chars).length<=1);
+}
+
+// console.log(isScrambledPalindrome('accecarr'));
+// console.log(isScrambledPalindrome("north"));
+// console.log(isScrambledPalindrome("vegetable"));
+
+
+
+
+function chekcPal(str) {
+  let newHas=new Map();
+
+  for(let i=0;i<str.length;i++) {
+    if(newHas.has(str[i])) {
+      let currval=newHas.get(str[i]);
+      newHas.set(str[i], currval+1)
+    } else {
+      newHas.set(str[i], 1)
+    }
+  }
+  if(str.length%2===0) {
+    return newHas.size===str.length/2
+  } else {return newHas.size===Math.ceil(str.length/2)}
+
+}
+
+
+console.log(chekcPal('sting'))
